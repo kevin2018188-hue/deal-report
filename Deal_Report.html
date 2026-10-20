@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Deal Report</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+        }
+        .card {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 440px;
+        }
+        h2 {
+            margin-top: 0;
+            color: #075e54;
+            text-align: center;
+            font-size: 20px;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #333;
+            font-size: 14px;
+        }
+        input[type="text"], input[type="tel"], input[type="date"], select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 15px;
+            box-sizing: border-box;
+            background-color: #fff;
+            font-family: inherit;
+        }
+        .tag-section-title {
+            font-size: 12px;
+            color: #666;
+            margin: 6px 0 4px 0;
+            font-weight: 600;
+        }
+        .quick-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 8px;
+        }
+        .tag-btn {
+            background: #e8f5e9;
+            color: #075e54;
+            border: 1px solid #b9f6ca;
+            border-radius: 6px;
+            padding: 5px 8px;
+            font-size: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            user-select: none;
+        }
+        .tag-btn.battery {
+            background: #e3f2fd;
+            color: #0d47a1;
+            border-color: #bbdefb;
+        }
+        .tag-btn:active {
+            transform: scale(0.96);
+            opacity: 0.8;
+        }
+        .model-input-wrap {
+            display: flex;
+            gap: 6px;
+        }
+        .btn-clear-model {
+            background: #ffebee;
+            color: #c62828;
+            border: 1px solid #ffcdd2;
+            border-radius: 8px;
+            padding: 0 12px;
+            font-size: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+        .radio-group {
+            display: flex;
+            gap: 15px;
+            background: #f9f9f9;
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+        }
+        .radio-group label {
+            font-weight: normal;
+            margin-bottom: 0;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            flex: 1;
+        }
+        .sales-divider {
+            border-top: 1px dashed #ccc;
+            margin: 18px 0 15px 0;
+            padding-top: 12px;
+        }
+        #customSalesName {
+            display: none;
+            margin-top: 8px;
+            border-color: #128C7E;
+        }
+        .btn {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: opacity 0.2s;
+        }
+        .btn:active {
+            opacity: 0.8;
+        }
+        .btn-whatsapp {
+            background-color: #25D366;
+            color: white;
+        }
+        .btn-copy {
+            background-color: #128C7E;
+            color: white;
+        }
+        .btn-clear {
+            background-color: #fee2e2;
+            color: #dc2626;
+            border: 1px solid #fecaca;
+            font-size: 14px;
+            padding: 10px;
+            margin-top: 14px;
+        }
+        .toast {
+            display: none;
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h2>📋 New Customer Report</h2>
+
+    <div class="form-group">
+        <label>1. Customer Name (客户姓名) *</label>
+        <input type="text" id="custName" placeholder="Enter customer name">
+    </div>
+
+    <div class="form-group">
+        <label>2. Phone Number (电话号码) *</label>
+        <input type="tel" id="custPhone" placeholder="e.g. 08012345678">
+    </div>
+
+    <div class="form-group">
+        <label>3. State (所在州) *</label>
+        <select id="custState">
+            <option value="">-- Select State --</option>
+            <option value="Lagos">Lagos</option>
+            <option value="Abuja (FCT)">Abuja (FCT)</option>
+            <option value="Rivers">Rivers</option>
+            <option value="Kano">Kano</option>
+            <option value="Oyo">Oyo</option>
+            <option value="Delta">Delta</option>
+            <option value="Anambra">Anambra</option>
+            <option value="Enugu">Enugu</option>
+            <option value="Ogun">Ogun</option>
+            <option value="Edo">Edo</option>
+            <option value="Kaduna">Kaduna</option>
+            <option value="Abia">Abia</option>
+            <option value="Adamawa">Adamawa</option>
+            <option value="Akwa Ibom">Akwa Ibom</option>
+            <option value="Bauchi">Bauchi</option>
+            <option value="Bayelsa">Bayelsa</option>
+            <option value="Benue">Benue</option>
+            <option value="Borno">Borno</option>
+            <option value="Cross River">Cross River</option>
+            <option value="Ebonyi">Ebonyi</option>
+            <option value="Ekiti">Ekiti</option>
+            <option value="Gombe">Gombe</option>
+            <option value="Imo">Imo</option>
+            <option value="Jigawa">Jigawa</option>
+            <option value="Katsina">Katsina</option>
+            <option value="Kebbi">Kebbi</option>
+            <option value="Kogi">Kogi</option>
+            <option value="Kwara">Kwara</option>
+            <option value="Nasarawa">Nasarawa</option>
+            <option value="Niger">Niger</option>
+            <option value="Ondo">Ondo</option>
+            <option value="Osun">Osun</option>
+            <option value="Plateau">Plateau</option>
+            <option value="Sokoto">Sokoto</option>
+            <option value="Taraba">Taraba</option>
+            <option value="Yobe">Yobe</option>
+            <option value="Zamfara">Zamfara</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>4. Is an Installer? (是否是安装商) *</label>
+        <div class="radio-group">
+            <label><input type="radio" name="installer" value="Yes (是)"> Yes</label>
+            <label><input type="radio" name="installer" value="No (否)"> No</label>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>5. Has a Shop? (是否有店铺) *</label>
+        <div class="radio-group">
+            <label><input type="radio" name="shop" value="Yes (有)"> Yes</label>
+            <label><input type="radio" name="shop" value="No (无)"> No</label>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>6. Purchased Model (购买型号 - 可点击或手动输入) *</label>
+        
+        <div class="tag-section-title">⚡ Inverters (点击添加，连点增加数量):</div>
+        <div class="quick-tags">
+            <button type="button" class="tag-btn" onclick="addModelTag('1.2kVA')">1.2kVA</button>
+            <button type="button" class="tag-btn" onclick="addModelTag('2kVA')">2kVA</button>
+            <button type="button" class="tag-btn" onclick="addModelTag('4.2kVA')">4.2kVA</button>
+            <button type="button" class="tag-btn" onclick="addModelTag('6.2kVA')">6.2kVA</button>
+            <button type="button" class="tag-btn" onclick="addModelTag('8.2kVA')">8.2kVA</button>
+            <button type="button" class="tag-btn" onclick="addModelTag('10kVA')">10kVA</button>
+            <button type="button" class="tag-btn" onclick="addModelTag('12kVA')">12kVA</button>
+            <button type="button" class="tag-btn" onclick="addModelTag('20kVA')">20kVA</button>
+        </div>
+
+        <div class="tag-section-title">🔋 Lithium Batteries (点击添加，连点增加数量):</div>
+        <div class="quick-tags">
+            <button type="button" class="tag-btn battery" onclick="addModelTag('2.56kWh-12V')">2.56kWh-12V</button>
+            <button type="button" class="tag-btn battery" onclick="addModelTag('2.5kWh-24V')">2.5kWh-24V</button>
+            <button type="button" class="tag-btn battery" onclick="addModelTag('3kWh-24V')">3kWh-24V</button>
+            <button type="button" class="tag-btn battery" onclick="addModelTag('5kWh-12V')">5kWh-12V</button>
+            <button type="button" class="tag-btn battery" onclick="addModelTag('5kWh-24V')">5kWh-24V</button>
+            <button type="button" class="tag-btn battery" onclick="addModelTag('6kWh-24V')">6kWh-24V</button>
+            <button type="button" class="tag-btn battery" onclick="addModelTag('6kWh-48V')">6kWh-48V</button>
+            <button type="button" class="tag-btn battery" onclick="addModelTag('10kWh')">10kWh</button>
+            <button type="button" class="tag-btn battery" onclick="addModelTag('15kWh')">15kWh</button>
+            <button type="button" class="tag-btn battery" onclick="addModelTag('16kWh')">16kWh</button>
+            <button type="button" class="tag-btn battery" onclick="addModelTag('17kWh')">17kWh</button>
+        </div>
+
+        <div class="model-input-wrap">
+            <input type="text" id="custModel" placeholder="Click buttons above or type manually...">
+            <button type="button" class="btn-clear-model" onclick="document.getElementById('custModel').value=''">✖ Clear</button>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>7. Purchase Date (购买日期) *</label>
+        <input type="date" id="purchaseDate">
+    </div>
+
+    <div class="form-group sales-divider">
+        <label>8. Sales Rep Name (对应销售名字) *</label>
+        <select id="salesSelect" onchange="toggleCustomSales()">
+            <option value="">-- Select Your Name --</option>
+            <option value="Mercy">Mercy</option>
+            <option value="Ife">Ife</option>
+            <option value="Faith">Faith</option>
+            <option value="Chi">Chi</option>
+            <option value="Cami">Cami</option>
+            <option value="Bright">Bright</option>
+            <option value="Emmanuel">Emmanuel</option>
+            <option value="Frank">Frank</option>
+            <option value="Wisdom">Wisdom</option>
+            <option value="Precious">Precious</option>
+            <option value="OTHER">➕ Other (手动输入其他名字)</option>
+        </select>
+        <input type="text" id="customSalesName" placeholder="Type your name here (请输入你的名字)">
+    </div>
+
+    <button class="btn btn-whatsapp" onclick="sendWhatsApp()">📲 Send via WhatsApp</button>
+    <button class="btn btn-copy" onclick="copyText()">📋 Copy Info Only</button>
+    <button class="btn btn-clear" onclick="clearForm()">🗑️ Clear All Info (一键清空重填)</button>
+
+    <div id="toast" class="toast">✅ Action completed!</div>
+</div>
+
+<script>
+    // 把这里的号码改成你接收报备的 WhatsApp 号码（带国家代码，不加+号）
+    const bossPhone = "2348163351016"; 
+
+    function setTodayDate() {
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('purchaseDate').value = today;
+    }
+
+    // 智能叠加型号与数量（例如点一下显示 6.2kVA，再点一下自动变成 6.2kVA x2）
+    function addModelTag(modelName) {
+        const input = document.getElementById('custModel');
+        let currentVal = input.value.trim();
+        
+        if (!currentVal) {
+            input.value = modelName;
+            return;
+        }
+
+        let items = currentVal.split(/\s*\+\s*/);
+        let found = false;
+
+        for (let i = 0; i < items.length; i++) {
+            let item = items[i].trim();
+            if (item === modelName) {
+                items[i] = modelName + " x2";
+                found = true;
+                break;
+            } else if (item.startsWith(modelName + " x")) {
+                let parts = item.split(" x");
+                let count = parseInt(parts[1]);
+                if (!isNaN(count)) {
+                    items[i] = modelName + " x" + (count + 1);
+                    found = true;
+                    break;
+                }
+            }
+        }
+
+        if (!found) {
+            items.push(modelName);
+        }
+
+        input.value = items.join(" + ");
+    }
+
+    function toggleCustomSales() {
+        const selectVal = document.getElementById('salesSelect').value;
+        const customInput = document.getElementById('customSalesName');
+        if (selectVal === 'OTHER') {
+            customInput.style.display = 'block';
+            customInput.focus();
+        } else {
+            customInput.style.display = 'none';
+        }
+    }
+
+    window.onload = function() {
+        setTodayDate();
+
+        const savedSelect = localStorage.getItem('savedSalesSelect');
+        const savedCustom = localStorage.getItem('savedSalesCustom');
+        
+        if (savedSelect) {
+            document.getElementById('salesSelect').value = savedSelect;
+            if (savedSelect === 'OTHER') {
+                document.getElementById('customSalesName').style.display = 'block';
+                document.getElementById('customSalesName').value = savedCustom || '';
+            }
+        }
+    };
+
+    function generateMessage() {
+        const name = document.getElementById('custName').value.trim();
+        const phone = document.getElementById('custPhone').value.trim();
+        const state = document.getElementById('custState').value;
+        const installer = document.querySelector('input[name="installer"]:checked')?.value;
+        const shop = document.querySelector('input[name="shop"]:checked')?.value;
+        const model = document.getElementById('custModel').value.trim();
+        const date = document.getElementById('purchaseDate').value;
+        
+        const salesSelect = document.getElementById('salesSelect').value;
+        const customSales = document.getElementById('customSalesName').value.trim();
+        const finalSales = (salesSelect === 'OTHER') ? customSales : salesSelect;
+
+        if (!name || !phone || !state || !installer || !shop || !model || !date || !finalSales) {
+            alert("⚠️ Please fill in all fields before submitting! (请填写所有必填项)");
+            return null;
+        }
+
+        localStorage.setItem('savedSalesSelect', salesSelect);
+        if (salesSelect === 'OTHER') {
+            localStorage.setItem('savedSalesCustom', customSales);
+        }
+
+        return `*🎉 NEW DEAL CLOSED (新成交客户)*\n` +
+               `------------------------\n` +
+               `👤 *Name:* ${name}\n` +
+               `📞 *Phone:* ${phone}\n` +
+               `📍 *State:* ${state}\n` +
+               `🛠️ *Installer:* ${installer}\n` +
+               `🏪 *Has Shop:* ${shop}\n` +
+               `🔋 *Model:* ${model}\n` +
+               `📅 *Date:* ${date}\n` +
+               `💼 *Sales Rep:* ${finalSales}\n` +
+               `------------------------`;
+    }
+
+    function sendWhatsApp() {
+        const text = generateMessage();
+        if (!text) return;
+        const encodedText = encodeURIComponent(text);
+        window.open(`https://wa.me/${bossPhone}?text=${encodedText}`, '_blank');
+    }
+
+    function copyText() {
+        const text = generateMessage();
+        if (!text) return;
+        navigator.clipboard.writeText(text).then(() => {
+            showToast("✅ Copied to clipboard!");
+        });
+    }
+
+    function clearForm() {
+        document.getElementById('custName').value = '';
+        document.getElementById('custPhone').value = '';
+        document.getElementById('custState').value = '';
+        document.getElementById('custModel').value = '';
+        setTodayDate();
+        document.querySelectorAll('input[type="radio"]').forEach(el => el.checked = false);
+        showToast("🗑️ Form cleared!");
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function showToast(msg) {
+        const toast = document.getElementById('toast');
+        toast.innerText = msg;
+        toast.style.display = 'block';
+        setTimeout(() => { toast.style.display = 'none'; }, 2000);
+    }
+</script>
+
+</body>
+</html>
